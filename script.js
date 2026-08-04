@@ -1,19 +1,17 @@
-// 1. Tạo hiệu ứng Icon bay ngay khi mở trang
 const floatingContainer = document.getElementById('floating-container');
 const icons = ['❤️', '💖', '🌸', '✨', '💕', '🥺', '🌷'];
 
-for (let i = 0; i < 22; i++) {
+for (let i = 0; i < 20; i++) {
     const item = document.createElement('div');
     item.className = 'floating-item';
     item.innerText = icons[Math.floor(Math.random() * icons.length)];
     item.style.left = `${Math.random() * 100}%`;
     item.style.animationDuration = `${4 + Math.random() * 5}s`;
-    item.style.animationDelay = `${Math.random() * 5}s`;
-    item.style.fontSize = `${1.2 + Math.random() * 1.2}rem`;
+    item.style.animationDelay = `${Math.random() * 4}s`;
+    item.style.fontSize = `${1.2 + Math.random() * 1.1}rem`;
     floatingContainer.appendChild(item);
 }
 
-// 2. DOM Elements
 const btnNo = document.getElementById('btnNo');
 const btnYes = document.getElementById('btnYes');
 const quiz = document.getElementById('quiz');
@@ -24,9 +22,8 @@ const envelope = document.getElementById('envelope');
 const typewriter = document.getElementById('typewriter');
 const actionArea = document.getElementById('actionArea');
 
-btnNo.style.left = '180px';
+btnNo.style.left = '160px';
 
-// 3. Nội dung bức thư đánh chữ
 const textContent = "Anh biết anh đã sai và làm Bà Chã Nga buồn rồi. Anh xin lỗi Bà Chã Nga nhiều lắm! 🥺\n\nAnh hứa từ nay sẽ luôn nghe lời, thương Bà Chã Nga thật nhiều và không bao giờ làm Bà Chã Nga buồn nữa đâu...\n\nBà Chã Nga tha lỗi cho anh nha? ❤️";
 let index = 0;
 
@@ -34,14 +31,15 @@ function typeText() {
     if (index < textContent.length) {
         typewriter.textContent += textContent.charAt(index);
         index++;
-        setTimeout(typeText, 45);
+        setTimeout(typeText, 40);
     } else {
-        // Gõ xong mới hiện câu hỏi và các nút
-        actionArea.classList.remove('hidden');
+        actionArea.style.display = 'block';
+        setTimeout(() => {
+            actionArea.classList.add('show');
+        }, 50);
     }
 }
 
-// 4. Mở bao thư
 function openEnvelope() {
     if (!envelope.classList.contains('open')) {
         envelope.classList.add('open');
@@ -52,7 +50,6 @@ function openEnvelope() {
 
 envelope.addEventListener('click', openEnvelope);
 
-// 5. Nút "Không tha" di chuyển né tránh & Nút "Tha lỗi" to dần
 let yesScale = 1;
 
 function moveButton() {
@@ -78,7 +75,6 @@ btnNo.addEventListener('touchstart', (e) => {
     moveButton();
 });
 
-// 6. Nhạc nền
 let audioCtx = null;
 let isPlaying = false;
 
@@ -109,7 +105,6 @@ function playMusic() {
 document.body.addEventListener('click', playMusic, { once: true });
 musicBtn.addEventListener('click', playMusic);
 
-// 7. Đồng ý tha lỗi -> Bắn pháo hoa & tự đóng
 btnYes.addEventListener('click', () => {
     quiz.style.display = 'none';
     btnNo.style.display = 'none';
