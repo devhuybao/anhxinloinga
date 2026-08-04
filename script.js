@@ -10,61 +10,7 @@ const questionArea = document.getElementById('questionArea');
 
 btnNo.style.left = '200px';
 
-// Canvas hiệu ứng Trái tim lơ lửng
-const canvas = document.getElementById('heartCanvas');
-const ctx = canvas.getContext('2d');
-let hearts = [];
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-class FloatingHeart {
-    constructor() {
-        this.reset();
-    }
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 20;
-        this.size = Math.random() * 15 + 10;
-        this.speedY = Math.random() * 1.5 + 0.8;
-        this.opacity = Math.random() * 0.7 + 0.3;
-        this.angle = Math.random() * Math.PI * 2;
-    }
-    update() {
-        this.y -= this.speedY;
-        this.x += Math.sin(this.angle) * 0.5;
-        this.angle += 0.02;
-        if (this.y < -20) this.reset();
-    }
-    draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = '#ff4b2b';
-        ctx.font = `${this.size}px sans-serif`;
-        ctx.fillText('❤️', this.x, this.y);
-        ctx.restore();
-    }
-}
-
-for (let i = 0; i < 25; i++) {
-    hearts.push(new FloatingHeart());
-}
-
-function animateHearts() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hearts.forEach(h => {
-        h.update();
-        h.draw();
-    });
-    requestAnimationFrame(animateHearts);
-}
-animateHearts();
-
-// Lời xin lỗi gõ máy chữ
+// Máy đánh chữ lời xin lỗi
 const text = "Anh biết anh làm Bà Chã buồn rồi. Anh xin lỗi nhiều lắm! Anh hứa sẽ không tái phạm nữa đâu...";
 let index = 0;
 
@@ -74,12 +20,12 @@ function typeText() {
         index++;
         setTimeout(typeText, 50);
     } else {
-        // KHI GÕ HẾT CHỮ -> Hiện phần câu hỏi và 2 nút tha lỗi/không tha
+        // Gõ xong mới hiện câu hỏi và nút
         questionArea.classList.remove('hidden');
     }
 }
 
-// Mở phong thư
+// Mở bao thư và rút lá thư lên
 function openEnvelope() {
     if (!envelope.classList.contains('open')) {
         envelope.classList.add('open');
@@ -90,7 +36,7 @@ function openEnvelope() {
 envelope.addEventListener('click', openEnvelope);
 setTimeout(openEnvelope, 800);
 
-// Nút "Chưa tha đâu" né tránh không thể bấm được
+// Nút "Chưa tha đâu" di chuyển né chuột
 let yesScale = 1;
 
 function moveButton() {
@@ -115,7 +61,7 @@ btnNo.addEventListener('touchstart', (e) => {
     moveButton();
 });
 
-// Nhạc nền Web Audio API du dương
+// Nhạc nền Web Audio API
 let audioCtx = null;
 let isPlaying = false;
 
@@ -146,7 +92,7 @@ function playRomanticMelody() {
 document.body.addEventListener('click', () => { playRomanticMelody(); }, { once: true });
 musicBtn.addEventListener('click', () => { playRomanticMelody(); });
 
-// Bấm Tha Lỗi -> Bắn pháo hoa & đếm ngược tắt trang
+// Sự kiện bấm nút Tha lỗi
 btnYes.addEventListener('click', () => {
     quiz.style.display = 'none';
     btnNo.style.display = 'none';
