@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Bà Chã ❤️</title>
+    <title>Gửi Bà Chã Nga ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Thư viện bắn pháo hoa -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <button class="music-btn" id="musicBtn">🎵</button>
+    <!-- Khung icon bay lơ lửng -->
+    <div id="floating-container"></div>
+
+    <!-- Nút bật/tắt nhạc -->
+    <button class="music-btn" id="musicBtn" title="Bật/Tắt nhạc">🎵</button>
 
     <div class="container">
         <div id="quiz">
@@ -17,28 +22,31 @@
             <div class="envelope-wrapper" id="envelope">
                 <div class="envelope-flap"></div>
                 <div class="pocket"></div>
-                <!-- Bức thư trồi lên -->
+                <div class="click-hint">✉️ Nhấn để mở thư</div>
+                
+                <!-- Bức thư nhô lên -->
                 <div class="letter">
-                    <p class="letter-title">Gửi Bà Chã ❤️</p>
+                    <p class="letter-title">Gửi Bà Chã Nga ❤️</p>
                     <p class="letter-body" id="typewriter"></p>
                 </div>
             </div>
 
-            <!-- Nút bấm & câu hỏi ẩn ban đầu -->
-            <div id="questionArea" class="question-area hidden">
-                <p class="question">Bà Chã hết giận và tha lỗi cho anh nha? 🥺</p>
+            <!-- Khung câu hỏi & nút bấm (Ban đầu ẩn, gõ thư xong mới hiện) -->
+            <div id="actionArea" class="action-area hidden">
+                <p class="question">Bà Chã Nga hết giận và tha lỗi cho anh nha? 🥺</p>
 
                 <div class="btn-group" id="btnGroup">
-                    <button id="btnYes">Tha lỗi cho anh ❤️</button>
-                    <button id="btnNo">Chưa tha đâu 😜</button>
+                    <button id="btnYes" class="btn">Tha lỗi cho anh ❤️</button>
+                    <button id="btnNo" class="btn">Không tha 😜</button>
                 </div>
             </div>
         </div>
 
+        <!-- Màn hình cảm ơn sau khi bấm Tha lỗi -->
         <div id="message" class="message">
-            <div class="heart-icon">🥰</div>
-            <h2>Cảm ơn Bà Chã!</h2>
-            <p>Biết ngay Bà Chã thương anh nhất mà! Mãi yêu Bà Chã nhìu nhìu ❤️</p>
+            <div class="heart-icon">🥰💖</div>
+            <h2>Cảm ơn Bà Chã Nga!</h2>
+            <p>Biết ngay Bà Chã Nga thương anh nhất mà! Mãi yêu Bà Chã Nga nhìu nhìu ❤️✨</p>
             <p class="timer-note">Trang web sẽ tự đóng sau <span id="countdown">5</span> giây...</p>
         </div>
     </div>
