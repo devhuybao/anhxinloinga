@@ -5,34 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gửi Bà Chã Nga ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Thư viện bắn pháo hoa -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <!-- Khung icon bay lơ lửng -->
     <div id="floating-container"></div>
-
-    <!-- Nút bật/tắt nhạc -->
     <button class="music-btn" id="musicBtn" title="Bật/Tắt nhạc">🎵</button>
 
     <div class="container">
         <div id="quiz">
-            <!-- Bao thư -->
             <div class="envelope-wrapper" id="envelope">
                 <div class="envelope-flap"></div>
                 <div class="pocket"></div>
-                <div class="click-hint">✉️ Nhấn để mở thư</div>
+                <div class="click-hint" id="clickHint">✉️ Nhấn để mở thư</div>
                 
-                <!-- Bức thư nhô lên -->
                 <div class="letter">
                     <p class="letter-title">Gửi Bà Chã Nga ❤️</p>
                     <p class="letter-body" id="typewriter"></p>
                 </div>
             </div>
 
-            <!-- Khung câu hỏi & nút bấm (Ban đầu ẩn, gõ thư xong mới hiện) -->
-            <div id="actionArea" class="action-area hidden">
+            <div id="actionArea" class="action-area">
                 <p class="question">Bà Chã Nga hết giận và tha lỗi cho anh nha? 🥺</p>
 
                 <div class="btn-group" id="btnGroup">
@@ -42,7 +35,6 @@
             </div>
         </div>
 
-        <!-- Màn hình cảm ơn sau khi bấm Tha lỗi -->
         <div id="message" class="message">
             <div class="heart-icon">🥰💖</div>
             <h2>Cảm ơn Bà Chã Nga!</h2>
