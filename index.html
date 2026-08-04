@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xin lỗi Bà Chã ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        .heart-fall {
+            position: fixed;
+            top: -10vh;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            max-width: 90%;
+            width: 420px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .sub-title {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .envelope {
+            background: #fff0f5;
+            border: 2px dashed #ff4b2b;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: left;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+            min-height: 60px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 26px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #btnYes {
+            background-color: #ff4b2b;
+            color: white;
+        }
+
+        #btnYes:hover {
+            transform: scale(1.1);
+            background-color: #ff416c;
+        }
+
+        #btnNo {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+            transition: all 0.15s ease-out;
+        }
+
+        .message {
+            display: none;
+        }
+
+        .message h2 {
+            color: #ff2a5f;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .message p {
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .heart-icon {
+            font-size: 3.5rem;
+            animation: beat 0.8s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.25); }
+        }
+
+        .music-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <button class="music-btn" id="musicBtn">🎵</button>
+
+    <div class="container">
+        <div id="quiz">
+            <div class="heart-icon">🥺</div>
+            <h1>Anh xin lỗi Bà Chã!</h1>
+            
+            <div class="envelope">
+                <p>Gửi <b>Bà Chã</b> đáng yêu của anh,</p>
+                <p>Anh biết anh làm em giận rồi. Anh hứa sẽ không tái phạm nữa đâu! Em hết giận anh nhé? ❤️</p>
+            </div>
+
+            <div class="btn-group" id="btnGroup">
+                <button id="btnYes">Tha lỗi cho anh ❤️</button>
+                <button id="btnNo">Chưa tha đâu 😜</button>
+            </div>
+        </div>
+
+        <div id="message" class="message">
+            <div class="heart-icon">🥰</div>
+            <h2>Cảm ơn Bà Chã!</h2>
+            <p>Biết ngay Bà Chã thương anh nhất mà! Mãi yêu Bà Chã nhìu nhìu ❤️</p>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Trang web sẽ tự đóng sau <span id="countdown">5</span> giây...</p>
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnYes = document.getElementById('btnYes');
+        const quiz = document.getElementById('quiz');
+        const message = document.getElementById('message');
+        const countdownEl = document.getElementById('countdown');
+        const musicBtn = document.getElementById('musicBtn');
+
+        btnNo.style.left = '200px';
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            const hearts = ['❤️', '💖', '🌸', '✨', '💕', '💗', '🧸'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 1.2 + 1 + 'rem';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        function moveButton() {
+            const padding = 20;
+            const maxX = window.innerWidth - btnNo.offsetWidth - padding;
+            const maxY = window.innerHeight - btnNo.offsetHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+        }
+
+        btnNo.addEventListener('mouseover', moveButton);
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        let audioCtx = null;
+        let isPlaying = false;
+
+        function playRomanticMelody() {
+            if (isPlaying) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = true;
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63];
+            let noteIdx = 0;
+
+            setInterval(() => {
+                if (!isPlaying) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(notes[noteIdx], audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+                noteIdx = (noteIdx + 1) % notes.length;
+            }, 600);
+        }
+
+        document.body.addEventListener('click', () => { playRomanticMelody(); }, { once: true });
+        musicBtn.addEventListener('click', () => { playRomanticMelody(); });
+
+        btnYes.addEventListener('click', () => {
+            quiz.style.display = 'none';
+            btnNo.style.display = 'none';
+            message.style.display = 'block';
+
+            setInterval(createHeart, 80);
+
+            let timeLeft = 5;
+            const timer = setInterval(() => {
+                timeLeft--;
+                countdownEl.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    window.close();
+                    document.body.innerHTML = '<h1 style="color:white; font-family:sans-serif;">Tắt tab này giúp anh nha Bà Chã 💖</h1>';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
