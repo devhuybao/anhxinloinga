@@ -1,4 +1,4 @@
-* {
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,9 +8,10 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-align: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+    /* Tone nền Hồng siêu ngọt ngào */
+    background: linear-gradient(135deg, #ff8fab 0%, #ffb3c6 50%, #fb6f92 100%);
     overflow: hidden;
     text-align: center;
     position: relative;
@@ -33,7 +34,7 @@ body {
     bottom: -50px;
     font-size: 1.5rem;
     animation: floatUp linear infinite;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 @keyframes floatUp {
@@ -53,30 +54,28 @@ body {
     }
 }
 
-/* Khung nội dung chính */
+/* Container chính */
 .container {
-    background: rgba(255, 255, 255, 0.93);
+    background: rgba(255, 255, 255, 0.94);
     padding: 30px 20px;
     border-radius: 24px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(10px);
     max-width: 90%;
-    width: 420px;
+    width: 380px;
     position: relative;
     z-index: 10;
 }
 
-/* Phong thư & Lá thư */
+/* Phong thư chứa lá thư bên trong */
 .envelope-wrapper {
     position: relative;
-    width: 100%;
-    height: 170px;
+    width: 300px;
+    height: 180px;
     background: #ff5277;
     border-radius: 12px;
-    margin-top: 110px;
-    margin-bottom: 25px;
+    margin: 110px auto 25px auto;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    perspective: 800px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -91,12 +90,12 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 190px solid transparent;
-    border-right: 190px solid transparent;
-    border-top: 95px solid #ff3360;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #ff3360;
     transform-origin: top;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 4;
+    z-index: 5;
 }
 
 .pocket {
@@ -105,43 +104,45 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 190px solid #ff6584;
-    border-right: 190px solid #ff6584;
-    border-bottom: 90px solid #ff5277;
+    border-left: 150px solid #ff6584;
+    border-right: 150px solid #ff6584;
+    border-bottom: 100px solid #ff5277;
     border-radius: 0 0 12px 12px;
     z-index: 3;
 }
 
 .click-hint {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     font-weight: bold;
     font-size: 1.05rem;
-    z-index: 5;
+    z-index: 6;
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     pointer-events: none;
     transition: opacity 0.3s;
 }
 
+/* Bức thư nằm chìm bên trong */
 .letter {
     position: absolute;
     bottom: 10px;
-    left: 5%;
-    width: 90%;
-    height: 140px;
+    left: 12px;
+    width: 276px;
+    height: 150px;
     background: #fff;
     border-radius: 10px;
     padding: 15px;
     text-align: left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
     overflow-y: auto;
 }
 
+/* Khi mở thư */
 .envelope-wrapper.open .envelope-flap {
     transform: rotateX(180deg);
     z-index: 1;
@@ -152,45 +153,43 @@ body {
 }
 
 .envelope-wrapper.open .letter {
-    transform: translateY(-135px);
-    z-index: 5;
+    transform: translateY(-130px);
+    z-index: 4;
     height: 180px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.2);
 }
 
 .letter-title {
     font-weight: bold;
-    color: #d63384;
+    color: #ff2a5f;
     margin-bottom: 8px;
-    font-size: 1.1rem;
-    border-bottom: 1px dashed #fecfef;
+    font-size: 1.05rem;
+    border-bottom: 1px dashed #ffb3c6;
     padding-bottom: 5px;
 }
 
 .letter-body {
     color: #444;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     white-space: pre-line;
 }
 
-/* Nút bấm & Câu hỏi */
+/* Khung câu hỏi & nút bấm */
 .action-area {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
 }
 
-.action-area.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-    visibility: hidden;
+.action-area.show {
+    display: block;
+    opacity: 1;
 }
 
 .question {
-    color: #d63384;
-    font-size: 1.2rem;
+    color: #ff2a5f;
+    font-size: 1.15rem;
     font-weight: bold;
     margin-bottom: 18px;
 }
@@ -205,8 +204,8 @@ body {
 }
 
 button.btn {
-    padding: 12px 24px;
-    font-size: 1.05rem;
+    padding: 12px 22px;
+    font-size: 1rem;
     font-weight: bold;
     border: none;
     border-radius: 50px;
@@ -239,13 +238,13 @@ button.btn {
 
 .message h2 {
     color: #ff2a5f;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 15px;
 }
 
 .message p {
     color: #444;
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.5;
 }
 
@@ -256,13 +255,13 @@ button.btn {
 }
 
 .heart-icon {
-    font-size: 4rem;
+    font-size: 3.5rem;
     animation: beat 0.8s infinite alternate;
     margin-bottom: 10px;
 }
 
 @keyframes beat {
-    to { transform: scale(1.25); }
+    to { transform: scale(1.2); }
 }
 
 .music-btn {
