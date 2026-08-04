@@ -13,21 +13,10 @@ body {
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
     overflow: hidden;
     text-align: center;
-    position: relative;
-}
-
-#heartCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 1;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px 20px;
     border-radius: 24px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -38,7 +27,7 @@ body {
     z-index: 10;
 }
 
-/* Khoảng trống trên cho lá thư nhô cao */
+/* Khoảng trống cho lá thư nhô lên */
 .envelope-wrapper {
     position: relative;
     width: 100%;
@@ -79,7 +68,7 @@ body {
     z-index: 3;
 }
 
-/* Bức thư chui từ trong ra */
+/* Bức thư chui ra ngoài */
 .letter {
     position: absolute;
     bottom: 10px;
@@ -96,7 +85,7 @@ body {
     overflow-y: auto;
 }
 
-/* Khi mở phong thư */
+/* Khi mở thư */
 .envelope-wrapper.open .envelope-flap {
     transform: rotateX(180deg);
     z-index: 1;
@@ -122,7 +111,7 @@ body {
     line-height: 1.5;
 }
 
-/* Phần câu hỏi và nút ẩn hiện mượt mà */
+/* Khung câu hỏi & nút bấm */
 .question-area {
     opacity: 1;
     transition: opacity 0.5s ease;
